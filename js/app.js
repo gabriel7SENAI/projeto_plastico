@@ -18,16 +18,16 @@ import {
   renderDashboard,
   setUserData as setDashboardData,
 } from "./dashboard.js";
-import { renderPerfil, setUserData as setPerfilData } from "./models/perfil.js";
+import { renderPerfil, setUserData as setPerfilData } from "./perfil.js";
 import {
   renderMateriais,
   setUserData as setMateriaisData,
-} from "./models/materiais.js";
-import { renderMoinho, setUserData as setMoinhoData } from "./models/moinho.js";
+} from "./materiais.js";
+import { renderMoinho, setUserData as setMoinhoData } from "./moinho.js";
 import {
   renderHistorico,
   setUserData as setHistoricoData,
-} from "./models/historico.js";
+} from "./historico.js";
 
 let currentUser = null;
 let currentUserRole = null;

@@ -1,5 +1,5 @@
-import { db } from "../firebaseConfig.js";
-import { userExtraInfo, isOnline } from "../auth.js";
+import { db } from "./firebaseConfig.js";
+import { userExtraInfo, isOnline } from "./auth.js";
 import { ref, get } from "firebase/database";
 
 let currentUserRole = null;

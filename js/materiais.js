@@ -1,5 +1,5 @@
-import { db } from "../firebaseConfig.js";
-import { isOnline } from "../auth.js";
+import { db } from "./firebaseConfig.js";
+import { isOnline } from "./auth.js";
 import { ref, get, set, push, update, remove } from "firebase/database";
 
 let currentUserRole = null;
