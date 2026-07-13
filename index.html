@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <title>SENAI Plásticos - Gestão</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- TELA DE LOGIN -->
+    <div id="loginContainer" class="login-container">
+      <div class="login-card">
+        <div class="logo-login">
+          <div class="logo-icon">
+            <i class="fas fa-industry"></i>
+            <i class="fas fa-recycle"></i>
+          </div>
+          <h2>SENAI Plásticos</h2>
+          <p>Sistema de Gestão do Almoxarifado</p>
+        </div>
+
+        <div class="login-tabs">
+          <button class="login-tab active" data-tab="professor">
+            Professor
+          </button>
+          <button class="login-tab" data-tab="aluno">Aluno</button>
+        </div>
+
+        <!-- Login Professor -->
+        <div id="loginProfessor" class="login-form active">
+          <div class="input-group">
+            <label><i class="fas fa-id-badge"></i> Matrícula (Email)</label>
+            <input
+              type="email"
+              id="loginProfEmail"
+              placeholder="professor@senai.com"
+            />
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-lock"></i> Senha</label>
+            <input
+              type="password"
+              id="loginProfPassword"
+              placeholder="********"
+            />
+          </div>
+          <button id="doLoginProfBtn" class="btn-login">
+            <i class="fas fa-arrow-right"></i> Entrar
+          </button>
+          <button
+            id="esqueciSenhaProfBtn"
+            class="btn-secundary"
+            style="margin-top: 8px"
+          >
+            <i class="fas fa-key"></i> Esqueci minha senha
+          </button>
+        </div>
+
+        <!-- Login Aluno -->
+        <div id="loginAluno" class="login-form">
+          <div class="input-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input
+              type="email"
+              id="loginAlunoEmail"
+              placeholder="aluno@email.com"
+            />
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-lock"></i> Senha</label>
+            <input
+              type="password"
+              id="loginAlunoPassword"
+              placeholder="********"
+            />
+          </div>
+          <button id="doLoginAlunoBtn" class="btn-login">
+            <i class="fas fa-arrow-right"></i> Entrar
+          </button>
+          <button
+            id="esqueciSenhaAlunoBtn"
+            class="btn-secundary"
+            style="margin-top: 8px"
+          >
+            <i class="fas fa-key"></i> Esqueci minha senha
+          </button>
+          <button
+            id="primeiroAcessoBtn"
+            class="btn-secundary"
+            style="margin-top: 8px; background: #0f766e; color: white"
+          >
+            <i class="fas fa-user-plus"></i> Primeiro Acesso (Aluno)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PRINCIPAL -->
+    <div id="appContainer" class="app-container">
+      <!-- HEADER -->
+      <div class="app-header">
+        <div class="logo-area">
+          <div class="logo-icon-header">
+            <i class="fas fa-industry"></i>
+            <i class="fas fa-recycle"></i>
+          </div>
+          <div>
+            <h1>SENAI Plásticos</h1>
+            <span id="headerStatus"
+              >Almoxarifado
+              <i
+                class="fas fa-circle"
+                style="color: #10b981; font-size: 8px"
+              ></i>
+              Online</span
+            >
+          </div>
+        </div>
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="user-details">
+            <span id="userNameDisplay" class="user-name">Carregando...</span>
+            <span id="userRoleBadge" class="user-role"></span>
+            <span id="userTurnoDisplay" class="user-turno"></span>
+          </div>
+          <button id="logoutBtnGlobal" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Sair
+          </button>
+        </div>
+      </div>
+
+      <!-- MENU HORIZONTAL CENTRALIZADO -->
+      <nav class="nav-horizontal" id="navHorizontal">
+        <button class="nav-item active" data-tab="dashboard">
+          <i class="fas fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="perfil">
+          <i class="fas fa-id-card"></i>
+          <span>Perfil</span>
+        </button>
+        <button class="nav-item" data-tab="materiais">
+          <i class="fas fa-cubes"></i>
+          <span>Materiais</span>
+        </button>
+        <button class="nav-item" data-tab="moinho">
+          <i class="fas fa-recycle"></i>
+          <span>Moinho</span>
+        </button>
+        <button class="nav-item" data-tab="historico">
+          <i class="fas fa-history"></i>
+          <span>Histórico</span>
+        </button>
+      </nav>
+
+      <!-- CONTEÚDO DAS ABAS -->
+      <div class="tabs-container">
+        <div id="tabDashboard" class="tab-content active">
+          <div class="loading">Carregando dashboard...</div>
+        </div>
+        <div id="tabPerfil" class="tab-content">
+          <div class="loading">Carregando perfil...</div>
+        </div>
+        <div id="tabMateriais" class="tab-content">
+          <div class="loading">Carregando materiais...</div>
+        </div>
+        <div id="tabMoinho" class="tab-content">
+          <div class="loading">Carregando moinho...</div>
+        </div>
+        <div id="tabHistorico" class="tab-content">
+          <div class="loading">Carregando histórico...</div>
+        </div>
+      </div>
+
+      <!-- FOOTER ATUALIZADO -->
+      <footer class="app-footer">
+        <div class="footer-content">
+          <div class="footer-info">
+            <p>
+              <span class="footer-dev-icon">
+                <i class="fas fa-code"></i>
+              </span>
+              Desenvolvido por
+              <span class="dev-name">Evelyn</span>
+              <span class="footer-role">Gerenciadora</span>
+              <span class="dev-separator">|</span>
+              <span class="dev-name">Gabriel</span>
+              <span class="dev-separator">e</span>
+              <span class="dev-name">Penélope</span>
+              <span class="footer-role">Programadores</span>
+            </p>
+            <p class="footer-school">
+              <i class="fas fa-graduation-cap"></i>
+              Turma de Técnico em Desenvolvimento de Sistemas - Turno Manhã 2026
+            </p>
+          </div>
+          <div class="footer-version">
+            <span class="version-badge">v3.0</span>
+            <span class="footer-heart">
+              <i class="fas fa-heart"></i>
+              <span class="footer-brand">SENAI Plásticos</span>
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- MODAIS -->
+    <div id="primeiroAcessoModal" class="modal">
+      <div class="modal-content" style="max-width: 520px">
+        <div class="modal-header">
+          <h3><i class="fas fa-user-plus"></i> Primeiro Acesso - Aluno</h3>
+          <span class="close-modal close-primeiro-acesso">&times;</span>
+        </div>
+        <div id="primeiroAcessoBody">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> Nome Completo</label>
+            <input
+              type="text"
+              id="novoAlunoNome"
+              placeholder="Seu nome completo"
+            />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input
+              type="email"
+              id="novoAlunoEmail"
+              placeholder="aluno@email.com"
+            />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-lock"></i> Senha</label>
+            <input type="password" id="novoAlunoSenha" placeholder="********" />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-clock"></i> Turno</label>
+            <select id="novoAlunoTurno">
+              <option value="Manhã">🌅 Manhã</option>
+              <option value="Tarde">☀️ Tarde</option>
+              <option value="Noite">🌙 Noite</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label
+              ><i class="fas fa-chalkboard-user"></i> Professor(es)
+              Responsável(is)</label
+            >
+            <div id="professoresCheckboxes">
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 6px 0;
+                "
+              >
+                <input type="checkbox" value="Tramontina" /> Tramontina
+                (Matrícula: 35354)
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 6px 0;
+                "
+              >
+                <input type="checkbox" value="Signorati" /> Signorati
+                (Matrícula: 35117)
+              </label>
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 6px 0;
+                "
+              >
+                <input type="checkbox" value="Wesley" /> Wesley (Matrícula:
+                XXXXX)
+              </label>
+            </div>
+          </div>
+          <button
+            id="btnCadastrarAluno"
+            class="btn-primary"
+            style="width: 100%; margin-top: 12px"
+          >
+            <i class="fas fa-save"></i> Cadastrar Aluno
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="esqueciSenhaModal" class="modal">
+      <div class="modal-content" style="max-width: 440px">
+        <div class="modal-header">
+          <h3><i class="fas fa-key"></i> Redefinir Senha</h3>
+          <span class="close-modal close-esqueci-senha">&times;</span>
+        </div>
+        <div id="esqueciSenhaBody">
+          <p style="color: #64748b; margin-bottom: 16px">
+            Preencha seus dados para redefinir a senha.
+          </p>
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input
+              type="email"
+              id="resetEmailInput"
+              placeholder="seuemail@exemplo.com"
+            />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-lock"></i> Nova Senha</label>
+            <input
+              type="password"
+              id="resetNovaSenha"
+              placeholder="Nova senha (mínimo 6 caracteres)"
+            />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-check"></i> Confirmar Nova Senha</label>
+            <input
+              type="password"
+              id="resetConfirmarSenha"
+              placeholder="Confirme a nova senha"
+            />
+          </div>
+          <button
+            id="btnResetarSenha"
+            class="btn-primary"
+            style="width: 100%; margin-top: 12px"
+          >
+            <i class="fas fa-save"></i> Redefinir Senha
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gerenciarProfessoresModal" class="modal">
+      <div class="modal-content" style="max-width: 560px">
+        <div class="modal-header">
+          <h3><i class="fas fa-users-cog"></i> Gerenciar Professores</h3>
+          <span class="close-modal close-gerenciar-profs">&times;</span>
+        </div>
+        <div id="gerenciarProfessoresBody">
+          <div style="margin-bottom: 16px">
+            <h4 style="color: #0f172a; margin-bottom: 8px">
+              Cadastrar Novo Professor
+            </h4>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nome</label>
+                <input
+                  type="text"
+                  id="novoProfNome"
+                  placeholder="Nome do professor"
+                />
+              </div>
+              <div class="form-group">
+                <label>Matrícula (Email)</label>
+                <input
+                  type="email"
+                  id="novoProfEmail"
+                  placeholder="professor@senai.com"
+                />
+              </div>
+              <div class="form-group">
+                <label>Senha</label>
+                <input
+                  type="password"
+                  id="novoProfSenha"
+                  placeholder="********"
+                />
+              </div>
+              <div class="form-group">
+                <label>Nº Matrícula</label>
+                <input
+                  type="text"
+                  id="novoProfMatricula"
+                  placeholder="Ex: 35354"
+                />
+              </div>
+            </div>
+            <button
+              id="btnCadastrarNovoProfessor"
+              class="btn-primary"
+              style="width: 100%"
+            >
+              <i class="fas fa-user-plus"></i> Cadastrar Professor
+            </button>
+          </div>
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 16px">
+            <h4 style="color: #0f172a; margin-bottom: 8px">
+              Professores Cadastrados
+            </h4>
+            <div id="listaProfessoresContainer">
+              <p style="color: #64748b">Carregando...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gerenciarAlunosModal" class="modal">
+      <div class="modal-content" style="max-width: 560px">
+        <div class="modal-header">
+          <h3><i class="fas fa-user-graduate"></i> Gerenciar Alunos</h3>
+          <span class="close-modal close-gerenciar-alunos">&times;</span>
+        </div>
+        <div id="gerenciarAlunosBody">
+          <div id="listaAlunosContainer">
+            <p style="color: #64748b">Carregando...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle"><i class="fas fa-edit"></i> Editar Item</h3>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div id="modalBody"></div>
+        <div class="modal-footer">
+          <button id="saveModalBtn" class="btn-save">
+            <i class="fas fa-save"></i> Salvar
+          </button>
+          <button id="cancelModalBtn" class="btn-cancel">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="removeModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="removeModalTitle">
+            <i class="fas fa-trash-alt"></i> Remover Item
+          </h3>
+          <span class="close-remove-modal">&times;</span>
+        </div>
+        <div id="removeModalBody"></div>
+        <div class="modal-footer">
+          <button id="confirmRemoveBtn" class="btn-danger">
+            <i class="fas fa-check"></i> Confirmar
+          </button>
+          <button id="cancelRemoveModal" class="btn-cancel">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+          "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+          "firebase/database": "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
+        }
+      }
+    </script>
+    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
